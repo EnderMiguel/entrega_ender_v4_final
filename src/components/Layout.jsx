@@ -1,0 +1,18 @@
+import React from 'react'
+import Navbar from './Navbar'
+
+export default function Layout({ children, cart=[] }) {
+  return (
+    <div>
+      <header>
+        <div className="container" style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+          <h2 style={{margin:0}}>PreEntrega - Ender</h2>
+          <Navbar cartCount={cart.length} />
+        </div>
+      </header>
+      <main className="container">
+        {children}
+      </main>
+    </div>
+  )
+}

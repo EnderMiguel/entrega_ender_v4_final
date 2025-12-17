@@ -5,7 +5,7 @@ export default function Login({ onLogin }) {
   const navigate = useNavigate()
   const handle = () => {
     onLogin()
-    navigate('/protected')
+   navigate('/alta')
   }
   return (
     <div>

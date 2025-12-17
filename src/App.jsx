@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
@@ -6,7 +7,7 @@ import Products from './pages/Products'
 import CartPage from './pages/CartPage'
 import ProductDetail from './pages/ProductDetail'
 import Login from './pages/Login'
-
+import AltaProducto from './pages/AltaProducto'
 function ProtectedRoute({ children, isAuth }) {
   if (!isAuth) return <Navigate to='/login' replace />
   return children
@@ -19,12 +20,18 @@ export default function App() {
   const addToCart = (product) => {
     setCart(prev => [...prev, product])
   }
+const addProduct = (product) => {
+  console.log("Producto creado:", product)
+}
 
   const login = () => setIsAuth(true)
 
   return (
     <Layout cart={cart}>
       <Routes>
+        <Route path="/alta" element={<ProtectedRoute isAuth={isAuth}><AltaProducto onAdd={addProduct} /></ProtectedRoute>}
+/>
+
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Products addToCart={addToCart} />} />
         <Route path='/product/:id' element={<ProductDetail addToCart={addToCart} />} />

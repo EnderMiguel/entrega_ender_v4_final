@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
@@ -17,6 +17,14 @@ export default function App() {
   const [cart, setCart] = useState([])
   const [isAuth, setIsAuth] = useState(false)
 
+  useEffect(() => {
+  const saved = localStorage.getItem("isAuth")
+  if (saved === "true") {
+    setIsAuth(true)
+  }
+}, [])
+
+
   const addToCart = (product) => {
     setCart(prev => [...prev, product])
   }
@@ -24,7 +32,11 @@ const addProduct = (product) => {
   console.log("Producto creado:", product)
 }
 
-  const login = () => setIsAuth(true)
+const login = () => {
+  setIsAuth(true)
+  localStorage.setItem("isAuth", "true")
+}
+
 
   return (
     <Layout cart={cart}>

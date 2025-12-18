@@ -1,3 +1,5 @@
+import React from 'react'
+
 import React, { useEffect, useState } from 'react'
 import ProductList from '../components/ProductList'
 import { MOCK_API_URL } from '../config'

@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function AltaProducto({ onAdd }) {
   const [name, setName] = useState("");
@@ -10,8 +9,9 @@ export default function AltaProducto({ onAdd }) {
 
     const newProduct = {
       id: crypto.randomUUID(),
-      title: name,
+      name: name.trim(),
       price: Number(price),
+      description: "Producto creado desde Alta",
     };
 
     onAdd(newProduct);
@@ -23,7 +23,7 @@ export default function AltaProducto({ onAdd }) {
     <div style={{ padding: "1rem" }}>
       <h2>Alta de productos</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ display: "grid", gap: 10, maxWidth: 320 }}>
         <input
           placeholder="Nombre del producto"
           value={name}
